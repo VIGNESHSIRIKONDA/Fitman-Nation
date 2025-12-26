@@ -1,0 +1,8 @@
+{
+  "name": "FitMan Nation project",
+  "description": "A professional fitness and wellness platform connecting clients with customized plans, community events, and mentor-led coaching.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
