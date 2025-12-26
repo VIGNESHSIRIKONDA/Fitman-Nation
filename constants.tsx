@@ -11,11 +11,12 @@ export const COLORS = {
 export const NAVIGATION_LINKS = [
   { name: 'Home', path: '#/' },
   { name: 'About', path: '#/about' },
+  { name: 'How It Works', path: '#/how-it-works' },
   { name: 'Programs', path: '#/programs' },
+  { name: 'Online Classes', path: '#/online-classes' },
   { name: 'Events', path: '#/events' },
   { name: 'Success Stories', path: '#/success' },
   { name: 'Blog', path: '#/blog' },
-  { name: 'Contact', path: '#/contact' },
 ];
 
 export const MOCK_PROGRAMS: Program[] = [
@@ -54,6 +55,25 @@ export const MOCK_PROGRAMS: Program[] = [
     price: 'Custom',
     image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&q=80&w=800',
     benefits: ['Safety first', 'Improved quality of life']
+  }
+  ,
+  {
+    id: 'group-classes',
+    title: 'Group Fitness Classes',
+    description: 'Energetic group sessions for motivation and social training.',
+    features: ['Weekly Class Schedule', 'Challenge Series', 'Coach-Led Sessions'],
+    price: '$29/mo',
+    image: 'https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&q=80&w=800',
+    benefits: ['Community motivation', 'Fun, structured workouts']
+  },
+  {
+    id: 'family-corporate',
+    title: 'Family & Corporate Plans',
+    description: 'Group-friendly plans for families and corporate wellness programs.',
+    features: ['Multi-user Pricing', 'Onsite Sessions', 'Wellness Programs'],
+    price: 'Contact Us',
+    image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800',
+    benefits: ['Team health improvements', 'Flexible scheduling']
   }
 ];
 

@@ -72,7 +72,7 @@ const Events: React.FC = () => {
         <div className="mt-20 text-center bg-white/5 p-12 rounded-[40px] border border-dashed border-white/10">
           <h3 className="text-2xl font-bold mb-4">Want to host an event?</h3>
           <p className="text-neutral-400 mb-8 max-w-md mx-auto italic">We are looking for local ambassadors to lead community runs in new cities.</p>
-          <Link to="/contact" className="text-red-600 font-bold hover:underline">BECOME AN AMBASSADOR →</Link>
+          <Link to="/?consult=true" className="text-red-600 font-bold hover:underline">BECOME AN AMBASSADOR →</Link>
         </div>
       </div>
     </div>

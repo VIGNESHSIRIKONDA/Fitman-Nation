@@ -19,7 +19,12 @@ const LeadForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Lead Captured:', formData);
+    // Build a WhatsApp message with the provided details
+    const number = '917799825216'; // include country code (example)
+    const message = `Hi FitMan Nation! I'd like a Free Consultation.\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nGoal: ${formData.fitnessGoal}\nExperience: ${formData.experienceLevel}\nMedical: ${formData.medicalConditions ? formData.medicalDetails : 'None' }`;
+    const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+    // open WhatsApp in a new tab/window
+    window.open(url, '_blank', 'noopener');
     setSubmitted(true);
   };
 

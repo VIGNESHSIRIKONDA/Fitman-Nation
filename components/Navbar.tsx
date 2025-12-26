@@ -6,6 +6,8 @@ import { NAVIGATION_LINKS } from '../constants';
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  // helper to open consultation on homepage
+  const consultPath = '/?consult=true';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,12 +40,7 @@ const Navbar: React.FC = () => {
               {link.name}
             </Link>
           ))}
-          <Link
-            to="/contact"
-            className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105"
-          >
-            GET STARTED
-          </Link>
+
         </div>
 
         {/* Mobile Toggle */}

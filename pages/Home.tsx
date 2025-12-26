@@ -1,10 +1,24 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import LeadForm from '../components/LeadForm';
-import { MOCK_PROGRAMS, MOCK_TESTIMONIALS } from '../constants';
+import { MOCK_PROGRAMS, MOCK_TESTIMONIALS, MOCK_EVENTS } from '../constants';
 
 const Home: React.FC = () => {
+  const { search } = useLocation();
+
+  React.useEffect(() => {
+    const params = new URLSearchParams(search);
+    if (params.get('consult') === 'true') {
+      const el = document.getElementById('consultation');
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+        const firstInput: HTMLInputElement | null = el.querySelector('input');
+        if (firstInput) firstInput.focus();
+      }
+    }
+  }, [search]);
+
   return (
     <div className="relative">
       {/* Hero Section */}
@@ -28,7 +42,7 @@ const Home: React.FC = () => {
               Connect with elite fitness mentors for personalized plans, high-octane community runs, and a lifestyle built on sustainable progress.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" className="bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-full font-black text-lg text-center transition-all transform hover:scale-105 shadow-xl shadow-red-900/40">
+              <Link to="/?consult=true" className="bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-full font-black text-lg text-center transition-all transform hover:scale-105 shadow-xl shadow-red-900/40">
                 JOIN THE NATION
               </Link>
               <Link to="/programs" className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-10 py-5 rounded-full font-black text-lg text-center transition-all">
@@ -39,15 +53,35 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Trust Bar */}
-      <div className="bg-neutral-900 py-6 border-y border-white/5">
-        <div className="container mx-auto px-4 flex flex-wrap justify-around items-center opacity-50 grayscale hover:grayscale-0 transition-all gap-8 text-white">
-          <span className="text-xl font-bold italic tracking-widest">RUNNING WORLD</span>
-          <span className="text-xl font-bold italic tracking-widest">FITNESS PRO</span>
-          <span className="text-xl font-bold italic tracking-widest">MENS HEALTH</span>
-          <span className="text-xl font-bold italic tracking-widest">ELITE SPORTS</span>
+      {/* What We Do */}
+      <section className="py-16 bg-neutral-900">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black italic mb-4 uppercase">What We Do at FitMan Nation</h2>
+            <p className="text-neutral-400 max-w-3xl mx-auto text-lg">
+              FitMan Nation helps individuals transform their bodies and lifestyles through structured fitness training, personalized diet strategies, and a powerful fitness community. We combine science-based workouts, practical nutrition guidance, and real human accountability to help people stay consistent, motivated, and results-driven.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-black/40 rounded-2xl p-8 text-center">
+              <div className="text-3xl mb-4">🏋️</div>
+              <h4 className="font-bold mb-2">Fitness & Training Programs</h4>
+              <p className="text-neutral-400 text-sm">Science-backed workouts and mentor guidance.</p>
+            </div>
+            <div className="bg-black/40 rounded-2xl p-8 text-center">
+              <div className="text-3xl mb-4">🥗</div>
+              <h4 className="font-bold mb-2">Diet & Nutrition Guidance</h4>
+              <p className="text-neutral-400 text-sm">Practical meal strategies built for real life.</p>
+            </div>
+            <div className="bg-black/40 rounded-2xl p-8 text-center">
+              <div className="text-3xl mb-4">🤝</div>
+              <h4 className="font-bold mb-2">Community & Accountability</h4>
+              <p className="text-neutral-400 text-sm">Join events, challenges, and peer support groups.</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Programs Preview */}
       <section className="py-24 bg-black">
@@ -102,23 +136,13 @@ const Home: React.FC = () => {
            </div>
          </div>
       </section>
-
-      {/* Lead Capture Section */}
-      <section className="py-24 bg-black">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-5xl font-black italic mb-8 uppercase leading-tight">Ready to train <span className="text-red-600">Smarter</span>?</h2>
-              <p className="text-xl text-neutral-400 mb-8 font-light leading-relaxed">
-                Take the first step towards a sustainable fitness lifestyle. Our mentors are ready to guide you through a science-backed transformation.
-              </p>
-              <ul className="space-y-4 mb-10">
-                <li className="flex items-center text-neutral-300"><span className="text-red-600 mr-3">✓</span> 15-Minute Expert Strategy Call</li>
-                <li className="flex items-center text-neutral-300"><span className="text-red-600 mr-3">✓</span> Body Type & Metabolism Assessment</li>
-                <li className="flex items-center text-neutral-300"><span className="text-red-600 mr-3">✓</span> Initial Mobility Screening</li>
-              </ul>
-            </div>
-            <LeadForm />
+      {/* Join WhatsApp Community Strip */}
+      <section className="py-8 bg-red-600">
+        <div className="container mx-auto px-4 text-center text-black">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-lg font-bold">Join Our WhatsApp Fitness Community</div>
+            <div className="text-sm max-w-xl text-black/80">Get daily tips, event alerts, motivation, and direct access to the FitMan Nation community.</div>
+            <a href="https://wa.me/917799825216" className="bg-white px-6 py-3 rounded-full font-bold">👉 Join WhatsApp Community</a>
           </div>
         </div>
       </section>
@@ -138,6 +162,54 @@ const Home: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Upcoming Events & Community Activities */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-black italic mb-8 text-center uppercase">Upcoming Events & Community Activities</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {MOCK_EVENTS.map(e => (
+              <div key={e.id} className="bg-neutral-900 p-6 rounded-2xl border border-white/5">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold">{e.title}</h3>
+                    <p className="text-sm text-neutral-400">{e.date} • {e.time} • {e.location}</p>
+                  </div>
+                  <div className="text-sm text-red-600 font-bold">{e.category}</div>
+                </div>
+                <p className="text-neutral-400 mb-4">{e.description}</p>
+                <div className="flex justify-end">
+                  <a href="/events" className="px-4 py-2 bg-red-600 rounded-full text-white font-bold">View Details / Register</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA - Lead Capture Section */}
+      <section id="consultation" className="py-24 bg-black">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-5xl font-black italic mb-8 uppercase leading-tight">Get a Free Consultation</h2>
+              <p className="text-xl text-neutral-400 mb-8 font-light leading-relaxed">
+                Not sure where to start? Speak with our coaches and get a personalized fitness direction based on your goals, body type, and lifestyle.
+              </p>
+              <ul className="space-y-4 mb-10">
+                <li className="flex items-center text-neutral-300"><span className="text-red-600 mr-3">✓</span> 15-Minute Expert Strategy Call</li>
+                <li className="flex items-center text-neutral-300"><span className="text-red-600 mr-3">✓</span> Body Type & Metabolism Assessment</li>
+                <li className="flex items-center text-neutral-300"><span className="text-red-600 mr-3">✓</span> Initial Mobility Screening</li>
+              </ul>
+              {/* <div className="flex gap-4">
+                <a href="/?consult=true" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-bold transition-all uppercase text-sm tracking-widest">Get Free Consultation</a>
+                <a href="https://wa.me/917799825216" className="bg-white text-black px-8 py-3 rounded-xl font-bold transition-all uppercase text-sm tracking-widest">WhatsApp</a>
+              </div> */}
+            </div>
+            <LeadForm />
           </div>
         </div>
       </section>

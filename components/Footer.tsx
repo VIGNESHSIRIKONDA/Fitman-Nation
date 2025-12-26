@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-bold mb-6">Support</h4>
             <ul className="space-y-4 text-sm text-neutral-400">
-              <li><Link to="/contact" className="hover:text-red-600">Contact Support</Link></li>
+              <li className="text-neutral-400 text-sm">📍 NYC Downtown — 242 West 27th St, New York, NY 10001</li>
               <li><Link to="/faq" className="hover:text-red-600">FAQs</Link></li>
               <li><Link to="/privacy" className="hover:text-red-600">Privacy Policy</Link></li>
               <li><Link to="/terms" className="hover:text-red-600">Terms of Service</Link></li>
@@ -60,8 +60,8 @@ const Footer: React.FC = () => {
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-neutral-500">
           <p>© 2024 FitMan Nation. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <p>support@fitmannation.com</p>
-            <p>+1 (555) FIT-MAN-1</p>
+            <a href="mailto:support@fitmannation.com" className="hover:text-red-600">support@fitmannation.com</a>
+            <a href="https://wa.me/917799825216" target="_blank" rel="noopener noreferrer" className="hover:text-red-600">+91 77998 25216 (WhatsApp)</a>
           </div>
         </div>
       </div>

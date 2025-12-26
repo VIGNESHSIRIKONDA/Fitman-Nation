@@ -48,7 +48,7 @@ const Programs: React.FC = () => {
                     <span className="text-neutral-500 text-xs block mb-1">MEMBERSHIP STARTS AT</span>
                     <span className="text-3xl font-black text-white">{program.price}</span>
                   </div>
-                  <Link to="/contact" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-bold transition-all uppercase text-sm tracking-widest">
+                  <Link to="/?consult=true" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-bold transition-all uppercase text-sm tracking-widest">
                     ENROLL NOW
                   </Link>
                 </div>
