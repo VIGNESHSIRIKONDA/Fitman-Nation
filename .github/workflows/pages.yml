@@ -1,17 +1,17 @@
-name: Deploy to GitHub Pages
+name: Deploy GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main # Or whatever branch you are deploying from
 
-permissions:
+permissions: # Set permissions at the top level
   contents: read
   pages: write
-  id-token: write
+  id-token: write # Needed for OIDC authentication
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,15 +31,18 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: './dist' # Vite build output
 
   deploy:
-    needs: build-and-deploy
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    permissions:
+    needs: build
+    permissions: # Explicitly set permissions for the deploy job as well
       pages: write
-      contents: read
       id-token: write
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        id: deployment
+        uses: actions/deploy-pages@v4
