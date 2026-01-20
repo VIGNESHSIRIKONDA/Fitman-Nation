@@ -21,16 +21,54 @@ export interface Event {
   date: string;
   time: string;
   location: string;
-  category: 'Run' | 'Challenge' | 'Meetup' | 'Class';
+  category: string;
   description: string;
 }
 
 export interface Testimonial {
   id: string;
   name: string;
-  role: string;
+  role?: string; 
+  tag?: string; 
+  result?: string; 
   text: string;
   image: string;
+}
+
+export interface Coach {
+  id: string;
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+  philosophy?: string;
+}
+
+export interface OnlineClass {
+  id: string;
+  title: string;
+  desc: string;
+  schedule: string;
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string; 
+  author: string;
+  date: string;
+  image: string;
+  category: string;
+}
+
+export interface PricingPlan {
+  id: string;
+  name: string;
+  price: string;
+  interval: string;
+  features: string[];
+  recommended?: boolean;
 }
 
 export interface LeadFormData {
@@ -41,6 +79,6 @@ export interface LeadFormData {
   experienceLevel: ExperienceLevel;
   medicalConditions: boolean;
   medicalDetails: string;
-  preferredLocation: 'home' | 'gym';
+  preferredLocation: string;
   availableTime: string;
 }

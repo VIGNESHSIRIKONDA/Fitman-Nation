@@ -1,34 +1,7 @@
-
 import React from 'react';
+import { MOCK_TESTIMONIALS } from '../constants';
 
 const Success: React.FC = () => {
-  const stories = [
-    {
-      id: 1,
-      name: 'Michael V.',
-      tag: 'Weight Loss & Mobility',
-      result: '-22kg in 6 Months',
-      text: 'FitMan Nation didn\'t just give me a diet. They gave me a roadmap. My back pain is gone and I feel 10 years younger.',
-      image: 'https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&q=80&w=600'
-    },
-    {
-      id: 2,
-      name: 'Jessica K.',
-      tag: 'Elite Performance',
-      result: 'Sub-4 Marathon',
-      text: 'The running community here is unmatched. The mentors helped me shave 20 minutes off my PR within one training cycle.',
-      image: 'https://images.unsplash.com/photo-1518611012118-296072bb5604?auto=format&fit=crop&q=80&w=600'
-    },
-    {
-      id: 3,
-      name: 'David L.',
-      tag: 'Muscle Hypertrophy',
-      result: '+8kg Lean Mass',
-      text: 'I struggled with being a "hard gainer" for years. The science-backed nutrition plan was the missing piece for me.',
-      image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&q=80&w=600'
-    }
-  ];
-
   return (
     <div className="pt-32 pb-24">
       <div className="container mx-auto px-4">
@@ -37,7 +10,7 @@ const Success: React.FC = () => {
         </h1>
 
         <div className="grid grid-cols-1 gap-12 max-w-6xl mx-auto">
-          {stories.map((story) => (
+          {MOCK_TESTIMONIALS.map((story) => (
             <div key={story.id} className="bg-neutral-900 rounded-[40px] overflow-hidden border border-white/5 flex flex-col md:flex-row group transition-all hover:border-red-600/20">
               <div className="md:w-1/2 h-[400px] overflow-hidden">
                 <img src={story.image} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt={story.name} />

@@ -150,18 +150,24 @@ const Home: React.FC = () => {
       {/* Testimonials */}
       <section className="py-24 bg-neutral-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-black italic mb-12 text-center uppercase">Real Stories, Real Results</h2>
+          <h2 className="text-5xl font-black italic mb-16 text-center uppercase">Real Stories. <span className="text-red-600">Real Results.</span></h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {MOCK_TESTIMONIALS.map(t => (
-              <div key={t.id} className="bg-black/50 p-8 rounded-3xl border border-white/5 flex gap-6">
-                <img src={t.image} alt={t.name} className="w-20 h-20 rounded-full border-2 border-red-600 object-cover hidden sm:block" />
+            {MOCK_TESTIMONIALS.slice(0, 4).map(t => (
+              <div key={t.id} className="bg-black/40 p-8 rounded-3xl border border-white/5 flex flex-col sm:flex-row gap-6 hover:border-red-600/30 transition-colors">
+                <img src={t.image} alt={t.name} className="w-24 h-24 rounded-full border-2 border-red-600 object-cover" />
                 <div>
-                  <p className="text-lg italic text-neutral-300 mb-4">"{t.text}"</p>
-                  <h4 className="font-bold text-red-600">{t.name}</h4>
-                  <p className="text-xs text-neutral-500 uppercase tracking-widest">{t.role}</p>
+                  <div className="flex items-center gap-2 mb-2">
+                     <h4 className="font-black text-2xl italic uppercase">{t.name}</h4>
+                     {t.result && <span className="bg-red-600/20 text-red-500 text-xs px-2 py-1 rounded font-bold uppercase">{t.result}</span>}
+                  </div>
+                  <p className="text-neutral-400 italic mb-4 text-sm leading-relaxed">"{t.text}"</p>
+                  <p className="text-xs text-neutral-500 uppercase tracking-widest font-bold">{t.tag || t.role}</p>
                 </div>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-12">
+             <Link to="/success" className="inline-block border-b border-red-600 text-white font-bold pb-1 hover:text-red-600 transition-colors uppercase tracking-widest text-sm">View All Success Stories</Link>
           </div>
         </div>
       </section>

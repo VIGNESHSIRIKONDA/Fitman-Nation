@@ -1,38 +1,12 @@
-
 import React, { useState } from 'react';
+import { MOCK_BLOG_POSTS } from '../constants';
 
 const Blog: React.FC = () => {
   const [filter, setFilter] = useState('All');
-  const categories = ['All', 'Nutrition', 'Training', 'Mindset', 'Recovery'];
+  // Dynamic categories based on existing posts
+  const categories = ['All', ...Array.from(new Set(MOCK_BLOG_POSTS.map(p => p.category)))];
 
-  const posts = [
-    {
-      id: 1,
-      title: 'The Truth About Fasted Cardio',
-      category: 'Training',
-      date: 'June 10, 2024',
-      image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=400',
-      excerpt: 'Is sweating before breakfast actually the secret to fat loss, or just a myth? We dive into the science.'
-    },
-    {
-      id: 2,
-      title: '5 Superfoods for Peak Muscle Recovery',
-      category: 'Nutrition',
-      date: 'June 05, 2024',
-      image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=400',
-      excerpt: 'Recovery happens in the kitchen. Learn which micronutrients are essential for rebuilding tissue.'
-    },
-    {
-      id: 3,
-      title: 'Mastering the Pre-Competition Mindset',
-      category: 'Mindset',
-      date: 'May 28, 2024',
-      image: 'https://images.unsplash.com/photo-1517438476312-10d79c077509?auto=format&fit=crop&q=80&w=400',
-      excerpt: 'Elite performance is 90% mental. Our head mentor shares his visualization techniques for game day.'
-    }
-  ];
-
-  const filteredPosts = filter === 'All' ? posts : posts.filter(p => p.category === filter);
+  const filteredPosts = filter === 'All' ? MOCK_BLOG_POSTS : MOCK_BLOG_POSTS.filter(p => p.category === filter);
 
   return (
     <div className="pt-32 pb-24">
@@ -67,7 +41,10 @@ const Blog: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4 uppercase group-hover:text-red-600 transition-colors">{post.title}</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed mb-6 line-clamp-2">{post.excerpt}</p>
-                <span className="text-white text-xs font-bold border-b border-red-600 pb-1">READ FULL ARTICLE</span>
+                <div className="flex justify-between items-center">
+                    <span className="text-white text-xs font-bold border-b border-red-600 pb-1">READ ARTICLE</span>
+                    <span className="text-neutral-600 text-xs uppercase">By {post.author}</span>
+                </div>
               </div>
             </div>
           ))}

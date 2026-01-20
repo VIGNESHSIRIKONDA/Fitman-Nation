@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MOCK_PROGRAMS } from '../constants';
@@ -14,45 +13,36 @@ const Programs: React.FC = () => {
           </p>
         </div>
 
-        <div className="space-y-20">
-          {MOCK_PROGRAMS.map((program, idx) => (
-            <div key={program.id} className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}>
-              <div className="flex-1 w-full">
-                <div className="relative group">
-                  <img src={program.image} alt={program.title} className="w-full h-[500px] object-cover rounded-[40px] shadow-2xl transition-all duration-700 group-hover:scale-[1.02]" />
-                  <div className="absolute inset-0 bg-red-600/10 rounded-[40px] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-              </div>
-              <div className="flex-1">
-                <span className="text-red-600 font-black tracking-widest text-sm mb-4 block uppercase">Program {idx + 1}</span>
-                <h2 className="text-4xl md:text-5xl font-black italic mb-6 leading-tight">{program.title}</h2>
-                <p className="text-neutral-400 text-lg mb-8 leading-relaxed italic">{program.description}</p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-                  <div>
-                    <h4 className="font-bold text-white mb-4 uppercase tracking-tighter border-b border-red-600 inline-block">Key Features</h4>
-                    <ul className="space-y-2 mt-4">
-                      {program.features.map(f => <li key={f} className="text-sm text-neutral-400 flex items-center"><span className="text-red-600 mr-2">•</span> {f}</li>)}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-white mb-4 uppercase tracking-tighter border-b border-red-600 inline-block">Outcomes</h4>
-                    <ul className="space-y-2 mt-4">
-                      {program.benefits.map(b => <li key={b} className="text-sm text-neutral-400 flex items-center"><span className="text-red-600 mr-2">•</span> {b}</li>)}
-                    </ul>
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {MOCK_PROGRAMS.map((program) => (
+            <div key={program.id} className="bg-neutral-900 rounded-[30px] overflow-hidden border border-white/5 flex flex-col group hover:border-red-600/30 transition-all duration-300">
+               <div className="relative h-64 overflow-hidden">
+                 <img src={program.image} alt={program.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                 <div className="absolute bottom-4 left-4">
+                    <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">{program.price}</span>
+                 </div>
+               </div>
+               
+               <div className="p-8 flex-1 flex flex-col">
+                 <h2 className="text-2xl font-black italic mb-4 uppercase">{program.title}</h2>
+                 <p className="text-neutral-400 text-sm mb-6 flex-1 leading-relaxed">{program.description}</p>
+                 
+                 <div className="space-y-4 mb-8">
+                   <div>
+                     <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2 text-red-600">Key Features</h4>
+                     <ul className="space-y-1">
+                       {program.features.slice(0, 3).map(f => (
+                         <li key={f} className="text-xs text-neutral-500">• {f}</li>
+                       ))}
+                     </ul>
+                   </div>
+                 </div>
 
-                <div className="flex items-center justify-between p-6 bg-neutral-900 rounded-2xl border border-white/5">
-                  <div>
-                    <span className="text-neutral-500 text-xs block mb-1">MEMBERSHIP STARTS AT</span>
-                    <span className="text-3xl font-black text-white">{program.price}</span>
-                  </div>
-                  <Link to="/?consult=true" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-bold transition-all uppercase text-sm tracking-widest">
-                    ENROLL NOW
-                  </Link>
-                </div>
-              </div>
+                 <Link to="/?consult=true" className="w-full block bg-white/5 hover:bg-red-600 border border-white/10 hover:border-red-600 text-white py-3 rounded-xl font-bold text-center transition-all uppercase text-xs tracking-widest">
+                   Join Program
+                 </Link>
+               </div>
             </div>
           ))}
         </div>
